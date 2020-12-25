@@ -20,7 +20,7 @@ a {
 	background-size: 1330px;
 	background-position: right bottom;
 	background-repeat: no-repeat;
-	background-image: url("../images/bg.png");
+	background-image: url("");
 	background-color: #edf1fd;
 }
 nav {
@@ -201,7 +201,7 @@ nav {
 /* projects */
 #projects{
 	width:100%;
-	height:100vh;
+	height: 100vh;
 	box-sizing: border-box;
 	font-family: calibri;
 	display: flex;
@@ -486,7 +486,7 @@ width: 100%;
 	font-family: calibri;
 	
 }
-.f-name font,.f-email font{
+.f-name span,.f-email span{
 	color:#BFBFBF;
 	font-size: 22px;
 }
@@ -509,7 +509,7 @@ width: 100%;
 .f-name input:focus{
 	border-bottom: 1px solid #17d1ac;
 	transition: all ease 0.5s;
-}.message font{
+}.message span{
 	font-size: 18px;
 	color:#4E4E4E;
 	font-family: calibri;
@@ -520,7 +520,7 @@ width: 100%;
 }
 .contact-right textarea{
 	width: 100% !important;
-	height: 320px !important;
+	height: 450px !important;
 	border: none;
 	outline: none;
 	background-color:transparent;
@@ -713,8 +713,9 @@ width: 100%;
 	#contact-form form h1{
 		margin:5px 0px;
 	}
-	
-	
+	#projects {
+		height: auto;
+	}	
 }
  
 @media(max-width:600px){

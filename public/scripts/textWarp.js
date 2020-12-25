@@ -30,6 +30,7 @@
     }
     let canvas,
         ctx
+    let mouseRadius = 150
 
     class Particle {
         constructor(x, y) {
@@ -56,11 +57,20 @@
         }
 
         _update(mouse) {
+            let dx = mouse.x - this.x
+            let dy = mouse.y - this.y
             let distance = Math.hypot(mouse.x - this.x, mouse.y - this.y)
-            if (distance < 500) {
-                this.size = 50
+            let forceDirectionX = dx / distance
+            let forceDirectionY = dy / distance
+            let maxDistance = mouseRadius
+            let force = (maxDistance - distance) / maxDistance
+            let directionX = forceDirectionX * force * this.density
+            let directionY = forceDirectionY * force * this.density
+            if (distance < mouseRadius) {
+                this.x += forceDirectionX
+                this.y += forceDirectionY
             } else {
-                this.size = 3
+                
             }
 
         }
@@ -81,7 +91,8 @@
         }
 
         // initiate Canvas
-        const ctx = canvas.getContext('2d')
+        
+        ctx = canvas.getContext('2d')
         canvas.addEventListener('mousemove', (e) =>{
             mouse.x = e.clientX
             mouse.y = e.clientY
@@ -104,7 +115,6 @@
     }
 
     function animate(canvas, ctx) {
-        console.log(mouse.x, mouse.lastX)
         ctx.clearRect(0, 0, canvas.width, canvas.height)
         for (let particle of particleArray) {
             particle.step(ctx, mouse)
@@ -112,7 +122,6 @@
         if (mouse.x !== mouse.lastX && mouse.y !== mouse.lastY) {
             mouse.lastX = mouse.x
             mouse.lastY = mouse.y
-            console.log('animate')
             requestAnimationFrame(animate)
         } 
         requestAnimationFrame(animate)
